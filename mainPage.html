@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>活動報名網站</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-image: url("background-picture.jpeg");
+            
+        }
+        header {
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        header nav {
+            display: flex;
+            gap: 20px;
+        }
+        header nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        header nav a:hover {
+            background-color: #555;
+        }
+        .cover {
+            width: 100%;
+            object-fit: cover;
+            margin-top: 60px;
+   
+        }
+        .test_cover{
+            width: 50%;
+            border-radius: 30px;
+            margin-top: 10px;
+
+
+        }
+        .camp-info {
+
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            text-align: center;
+            margin-top: 10px; /* 增加頂部間距以避免被固定的header遮擋 */
+        }
+        .signup-info{
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            width:90%;
+            text-align: center;
+            margin-top: 10px; /* 增加頂部間距以避免被固定的header遮擋 */
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+        .info-container{
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+        }
+        .info-container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h2 {
+            color: #333;
+            font: bold;
+            font-size: 40px;
+            
+        }
+        h3 {
+            color: #555;
+        }
+        p {
+            color: #666;
+            line-height: 1.6;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            background: #e7e7e7;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        footer {
+            margin-top: auto;
+            padding: 10px 0;
+            background-color: #333;
+            color: white;
+            width: 100%;
+            text-align: center;
+        }
+        .my_button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            color: black;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 50px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .my_button:hover {
+            background-color: gray;
+        }
+        .link{
+            color: #555;
+            font:bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#">首頁</a>
+            <a href="#">關於我們</a>
+            <a href="https://reurl.cc/4602Ej">報名簡章</a>
+            <a href="https://forms.gle/wWdmbQpML42BCBxd6">報名表單</a>
+
+
+        </nav>
+    </header>
+
+    <img src="nckuclc_cover.jpg" alt="picture" class="cover">
+
+    <!-- 營隊介紹 -->
+    <div class="camp-info">
+        <h2>成敘</h2>
+        <p>歲月流轉，人生的故事由無數片段拼湊而成。我們跌撞前行，回首過去的風景，才發現那些傷痕與成長交織，成就了今日的自己。
+            讓我們拾起過往，以文字療癒心靈，在創作中尋找前行的勇氣。
+            </p>
+        <p>今年成大文藝營將帶領學員一起用創作回應內心深處的聲音，透過劇本書寫，將內心最深處的情感轉化為有溫度的故事。在這裡，我們不只是記錄經歷，更試圖在敘寫中找到前行的力量。
+            筆鋒所至，皆是成長的痕跡。
+        </p>
+        <p>這個夏天，我們在成功大學，敘寫人生。</p>
+        <h3 style="font-size: 30px;">報名時間｜2025/2/24-2025/4/18</h3>
+
+    </div>
+    <img src = "test_cover.png" alt = "picture" class = "test_cover">
+    <a href="learning.html" class="my_button">讓我們開始吧</a>
+    <footer>
+        <p>Contact us at: wenyiyingncku@gmail.com</p>
+    </footer>
+</body>
+</html>

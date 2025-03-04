@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>活動報名網站</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+        header {
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        header nav {
+            display: flex;
+            gap: 20px;
+        }
+        header nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        header nav a:hover {
+            background-color: #555;
+        }
+        .camp-info {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            text-align: center;
+            margin-top: 80px; /* 增加頂部間距以避免被固定的header遮擋 */
+        }
+        h2 {
+            color: #333;
+        }
+        h3 {
+            color: #555;
+        }
+        p {
+            color: #666;
+            line-height: 1.6;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            background: #e7e7e7;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        footer {
+            margin-top: auto;
+            padding: 10px 0;
+            background-color: #333;
+            color: white;
+            width: 100%;
+            text-align: center;
+        }
+        .my_button{
+            display : inline-block;
+            padding :12px 24px;
+            font-size : 18px;
+            font-weight : bold;
+            color : black;
+            background-color : white;
+            border : 2px solid black;
+            border-radius : 50px;
+            text-align:  center;
+            cursor : pointer;
+            transition : backgrounf-color 0.3s,color 0.3s;
+            width: 100%;
+        }
+
+        .my_button:hover{
+            background-color: gray;
+
+        }
+        .button_container{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center; /* 居中對齊 */
+            margin-top: 100px;
+            width: 100%;
+        }
+        .question-pic{
+            width:50%;
+            border-radius: 50px;
+            margin-bottom: 20px;
+        }
+
+        .question_container{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center; /* 居中對齊 */
+
+            
+        }
+
+        .question{
+            font: bold;
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center; /* 居中對齊 */
+            width: auto;
+
+
+        }
+
+        .options{
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="mainPage.html">首頁</a>
+            <a href="#">關於我們</a>
+            <a href="#">報名網址</a>
+        </nav>
+    </header>
+    <main>
+       
+        <div class="button_container">
+            <div id="quiz"></div>
+            <div id="counter">分數: 0</div>
+        </div>
+    </main>
+    <footer>
+        <p>Contact us at: camp@college.edu</p>
+    </footer>
+
+    <script>
+        const questions = [
+        {
+            question: "你嚮往的理想生活方式為？",
+            picture:"qa.png",
+            options: [
+                {text: "A.自由自在，隨心所欲，及時享樂",value: 1},
+                {text: "B.淡泊名利，追求內心的平靜、祥和",value: 2},
+                {text: "C.積極進取，願在社會上貢獻影響力",value: 3},
+                {text: "D.沈思自省，探索內心、存在的意義",value: 4}
+            ]
+        },
+        {
+            question: "今天在畫展看上了一幅畫，會是哪一幅？",
+            picture:"qb.png",
+            options: [
+                {text: "A.壯麗的山川，搭配著氣勢滂薄的瀑布",value: 1},
+                {text: "B.寧靜的田園，飽滿彎腰的稻穗與淡淡鮮花",value: 2},
+                {text: "C.街頭上人們匆忙地穿梭的身影",value: 3},
+                {text: "D.人體中出現黑洞，裡面充滿許多神秘莫測的小星球",value: 4}
+            ]
+        },
+        {
+            question: "在飲料店打工的你，今天因為不小心打翻了一杯飲料而被老闆大聲斥責，你的反應會是？", 
+            picture:"qc.png",
+            options: [
+                {text: "A.哇！就是要從錯誤中學習，這才叫做挑戰與人生！",value: 1},
+                {text: "B.沒事的，犯錯沒關係，接受失敗與過錯吧～",value: 2},
+                {text: "C.如果換成我是老闆，我也很難不生氣吧",value: 3},
+                {text: "D.好難過...我會不會明天就被炒魷魚了..嗚嗚，下次乾脆用托盤端飲料好了（？",value: 4}
+            ]
+        },
+        {
+            question: "某天與好友聚會時，朋友們提議來點即興表演吧，你會？",
+            picture:"qd.png",
+            options: [
+                {text: "A.我大展身手的時候到了！馬上來",value: 1},
+                {text: "B.認真觀賞他人的表演，微笑拍手",value: 2},
+                {text: "C.關注表演內容，思考背後藏著什麼意義？",value: 3},
+                {text: "D.靈感被表演激發，默默在一旁記錄自己的感受",value: 4}
+            ]
+        },
+        {
+            question: "獨自一人坐在海邊觀看夕陽西下，你的心裡正想著？",
+            picture:"qe.png",
+            options: [
+                {text: "A.生命短暫、及時行樂",value: 1},
+                {text: "B.內心平靜、與自然合一",value: 2},
+                {text: "C.激憤不已、胸懷大志",value: 3},
+                {text: "D.鬱鬱寡歡、黯然神傷",value: 4}
+            ]
+        }];
+
+        const results = [
+        {
+            script1:"我就愛玩，啊不然你想怎樣？",
+            script2:"與你最像的詩人是李白，個性自由奔放、無拘無束、豪邁不羈。",
+            script3:"李白：「人生得意需盡歡，莫使金樽空對月。」（《將進酒》"
+        },
+        {
+            script1:"平常收到的長輩圖難道都是你傳的？",
+            script2:"與你最像的詩人是王維，個性成熟深沉、含蓄內斂。",
+            script3:"王維：「不知香積寺，數裏入雲峯。古木無人徑，深山何處鐘。泉聲咽危石，日色冷青松。薄暮空潭曲，安禪製毒龍。」（《過香積寺》）"
+        },
+        {
+            script1:"努力關心社會的同時，也別忘了留點時間給自己！",
+            script2:"與你最像的詩人是杜甫，認真努力、關心社會發生的大小事，有「人飢己飢，人溺己溺」的精神。",
+            script3:"杜甫：「國破山河在，城春草木深。感時花濺淚，恨別鳥驚心。烽火連三月，家書抵萬金。白頭搔更短，渾欲不勝簪。」（《春望》）"
+        },
+        {
+            script1:"不要在獨自偷偷emo啦！",
+            script2:"與你最像的詩人是李賀，平時多愁善感、抑鬱寡歡。",
+            script3:"李賀：「況是青春日將暮，桃花亂落如紅雨。勸君終日酩酊醉，酒不到劉伶墳上土。」（《將進酒》"
+        }]
+            
+
+        
+
+        let currentQuestionIndex = 0;
+        let counter = 0;
+        const quizContainer = document.getElementById("quiz");
+        const counterDisplay = document.getElementById("counter");
+
+        function loadQuestion() {
+            const currentQuestion = questions[currentQuestionIndex];
+            quizContainer.innerHTML = `
+                <div class="question_container">
+                    <div class="question">${currentQuestion.question}</div>
+                    <img src="${currentQuestion.picture}" alt="picture" class="question-pic">
+                    ${currentQuestion.options.map(option => `<button class="my_button" onclick="nextQuestion(${option.value})">${option.text}</button>`).join('')}
+                </div>
+            `;
+        }
+
+        function nextQuestion(value) {
+            counter += value;
+            currentQuestionIndex++;
+            counterDisplay.innerText = `分數: ${counter}`;
+            
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                caseSelection(counter);
+            }
+        }
+
+        function caseSelection(totalValue) {
+            function randomChoice(option1, option2) {
+                return Math.random() < 0.5 ? option1 : option2;
+            }
+        
+            if (totalValue >= 5 && totalValue <= 7) {
+                quizContainer.innerHTML = `
+                    <div class="question">
+                        <h2>${results[0].script1}</h2>
+                        <h2>${results[0].script2}</h2>
+                        <h2>${results[0].script3}</h2>
+                    </div>
+                `;
+            } else if (totalValue === 8) {
+                let result = randomChoice("A 型", "B 型");
+                if(result == "A 型"){
+                    quizContainer.innerHTML = `
+                    <div class="question">
+                        <h2>${results[0].script1}</h2>
+                        <h2>${results[0].script2}</h2>
+                        <h2>${results[0].script3}</h2>
+                    </div>
+                `;
+                }else{
+                    quizContainer.innerHTML = `
+                    <div class="question">
+                        <h2>${results[1].script1}</h2>
+                        <h2>${results[1].script2}</h2>
+                        <h2>${results[1].script3}</h2>
+                    </div>
+                `;
+                }
+            } else if (totalValue >= 9 && totalValue <= 11) {
+                quizContainer.innerHTML = `
+                    <div class="question">
+                        <h2>${results[1].script1}</h2>
+                        <h2>${results[1].script2}</h2>
+                        <h2>${results[1].script3}</h2>
+                    </div>
+                `;
+            } else if (totalValue === 12) {
+                let result = randomChoice("B 型", "C 型");
+                if(result == "B 型"){
+                    quizContainer.innerHTML = `
+                    <div class="question">
+                        <h2>${results[1].script1}</h2>
+                        <h2>${results[1].script2}</h2>
+                        <h2>${results[1].script3}</h2>
+                    </div>
+                `;
+                }else{
+                    quizContainer.innerHTML = `
+                    <div class="question">
+                        <h2>${results[2].script1}</h2>
+                        <h2>${results[2].script2}</h2>
+                        <h2>${results[2].script3}</h2>
+                    </div>
+                `;
+                }
+            } else if (totalValue >= 13 && totalValue <= 15) {
+                quizContainer.innerHTML = `
+                    <div class="question">
+                        <h2>${results[2].script1}</h2>
+                        <h2>${results[2].script2}</h2>
+                        <h2>${results[2].script3}</h2>
+                    </div>
+                `;
+            } else if (totalValue === 16) {
+                let result = randomChoice("C 型", "D 型");
+                if(result == "C 型"){
+                    quizContainer.innerHTML = `
+                    <div class="question">
+                        <h2>${results[2].script1}</h2>
+                        <h2>${results[2].script2}</h2>
+                        <h2>${results[2].script3}</h2>
+                    </div>
+                `;
+                }else{
+                    quizContainer.innerHTML = `
+                    <div class="question">
+                        <h2>${results[3].script1}</h2>
+                        <h2>${results[3].script2}</h2>
+                        <h2>${results[3].script3}</h2>
+                    </div>
+                `;
+                }
+            } else if (totalValue >= 17 && totalValue <= 20) {          
+                quizContainer.innerHTML = `
+                    <div class="question">
+                        <h2>${results[3].script1}</h2>
+                        <h2>${results[3].script2}</h2>
+                        <h2>${results[3].script3}</h2>
+                    </div>
+                `;
+            } else {
+                quizContainer.innerHTML = `
+                    <div class="question">
+                        <h2>輸入錯誤或未符合範圍</h2>
+                    </div>
+                `;
+            }
+        }
+        
+
+        loadQuestion();
+    </script>
+</body>
+</html>
