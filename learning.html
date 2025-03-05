@@ -14,6 +14,7 @@
             flex-direction: column;
             align-items: center;
             height: 100vh;
+            background-image: url("picture/background-picture.jpeg");
         }
         header {
             width: 100%;
@@ -53,6 +54,8 @@
         }
         h2 {
             color: #333;
+            font-size: 50px;
+            display: flex;
         }
         h3 {
             color: #555;
@@ -79,178 +82,170 @@
             width: 100%;
             text-align: center;
         }
-        .my_button{
-            display : inline-block;
-            padding :12px 24px;
-            font-size : 18px;
-            font-weight : bold;
-            color : black;
-            background-color : white;
-            border : 2px solid black;
-            border-radius : 50px;
-            text-align:  center;
-            cursor : pointer;
-            transition : backgrounf-color 0.3s,color 0.3s;
-            width: 100%;
+        .my_button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            color: black;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 50px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            margin-top: 20px;
+            max-width: 500px;
+            width: 70%;
         }
-
-        .my_button:hover{
+        .my_button2 {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            color: black;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 50px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            margin-top: 20px;
+        }
+        .my_button:hover {
             background-color: gray;
-
         }
-        .button_container{
+        .button_container {
             display: flex;
             flex-direction: column;
             gap: 10px;
             align-items: center; /* 居中對齊 */
-            margin-top: 100px;
+            margin-top: 50px;
             width: 100%;
-            margin-bottom:50px;
+            margin-bottom: 50px;
+            padding: 10px;
         }
-        .question-pic{
-            width:50%;
+        .question-pic {
+            width: 50%;
             border-radius: 50px;
             margin-bottom: 20px;
         }
-
-        .question_container{
+        .question_container {
             display: flex;
             flex-direction: column;
             gap: 10px;
             align-items: center; /* 居中對齊 */
-
-            
         }
-
-        .question{
+        .question {
             font: bold;
             font-size: 30px;
             font-weight: bold;
             margin-bottom: 15px;
             text-align: center; /* 居中對齊 */
             width: auto;
-
-
         }
-
-        .options{
+        .options {
             list-style-type: none;
             padding: 0;
         }
-        .pomer{
+        .pomer {
             width: 50%;
             border-radius: 30px;
-            margin-top: 10px
+            margin-top: 10px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="index.html" style="font-size: 20px;">首頁</a>
-            <a href="#" style="font-size: 20px;">關於我們</a>
-            <a href="https://reurl.cc/4602Ej" style="font-size: 20px;">報名簡章</a>
-            <a herf="https://forms.gle/wWdmbQpML42BCBxd6" style="font-size: 20px;">報名表單</a>
-        </nav>
-    </header>
     <main>
-       
         <div class="button_container">
             <div id="quiz"></div>
         </div>
     </main>
-    <footer>
-        <p>Contact us at: camp@college.edu</p>
-    </footer>
-
     <script>
         const questions = [
-        {
-            question: "你嚮往的理想生活方式為？",
-            picture:"picture/qa.png",
-            options: [
-                {text: "A.自由自在，隨心所欲，及時享樂",value: 1},
-                {text: "B.淡泊名利，追求內心的平靜、祥和",value: 2},
-                {text: "C.積極進取，願在社會上貢獻影響力",value: 3},
-                {text: "D.沈思自省，探索內心、存在的意義",value: 4}
-            ]
-        },
-        {
-            question: "今天在畫展看上了一幅畫，會是哪一幅？",
-            picture:"picture/qb.png",
-            options: [
-                {text: "A.壯麗的山川，搭配著氣勢滂薄的瀑布",value: 1},
-                {text: "B.寧靜的田園，飽滿彎腰的稻穗與淡淡鮮花",value: 2},
-                {text: "C.街頭上人們匆忙地穿梭的身影",value: 3},
-                {text: "D.人體中出現黑洞，裡面充滿許多神秘莫測的小星球",value: 4}
-            ]
-        },
-        {
-            question: "在飲料店打工的你，今天因為不小心打翻了一杯飲料而被老闆大聲斥責，你的反應會是？", 
-            picture:"picture/qc.png",
-            options: [
-                {text: "A.哇！就是要從錯誤中學習，這才叫做挑戰與人生！",value: 1},
-                {text: "B.沒事的，犯錯沒關係，接受失敗與過錯吧～",value: 2},
-                {text: "C.如果換成我是老闆，我也很難不生氣吧",value: 3},
-                {text: "D.好難過...我會不會明天就被炒魷魚了..嗚嗚，下次乾脆用托盤端飲料好了（？",value: 4}
-            ]
-        },
-        {
-            question: "某天與好友聚會時，朋友們提議來點即興表演吧，你會？",
-            picture:"picture/qd.png",
-            options: [
-                {text: "A.我大展身手的時候到了！馬上來",value: 1},
-                {text: "B.認真觀賞他人的表演，微笑拍手",value: 2},
-                {text: "C.關注表演內容，思考背後藏著什麼意義？",value: 3},
-                {text: "D.靈感被表演激發，默默在一旁記錄自己的感受",value: 4}
-            ]
-        },
-        {
-            question: "獨自一人坐在海邊觀看夕陽西下，你的心裡正想著？",
-            picture:"picture/qe.png",
-            options: [
-                {text: "A.生命短暫、及時行樂",value: 1},
-                {text: "B.內心平靜、與自然合一",value: 2},
-                {text: "C.激憤不已、胸懷大志",value: 3},
-                {text: "D.鬱鬱寡歡、黯然神傷",value: 4}
-            ]
-        }];
+            {
+                question: "你嚮往的理想生活方式為？",
+                picture: "picture/qa.png",
+                options: [
+                    { text: "A.自由自在，隨心所欲，及時享樂", value: 1 },
+                    { text: "B.淡泊名利，追求內心的平靜、祥和", value: 2 },
+                    { text: "C.積極進取，願在社會上貢獻影響力", value: 3 },
+                    { text: "D.沈思自省，探索內心、存在的意義", value: 4 }
+                ]
+            },
+            {
+                question: "今天在畫展看上了一幅畫，會是哪一幅？",
+                picture: "picture/qb.png",
+                options: [
+                    { text: "A.壯麗的山川，搭配著氣勢滂薄的瀑布", value: 1 },
+                    { text: "B.寧靜的田園，飽滿彎腰的稻穗與淡淡鮮花", value: 2 },
+                    { text: "C.街頭上人們匆忙地穿梭的身影", value: 3 },
+                    { text: "D.人體中出現黑洞，裡面充滿許多神秘莫測的小星球", value: 4 }
+                ]
+            },
+            {
+                question: "在飲料店打工的你，今天因為不小心打翻了一杯飲料而被老闆大聲斥責，你的反應會是？",
+                picture: "picture/qc.png",
+                options: [
+                    { text: "A.哇！就是要從錯誤中學習，這才叫做挑戰與人生！", value: 1 },
+                    { text: "B.沒事的，犯錯沒關係，接受失敗與過錯吧～", value: 2 },
+                    { text: "C.如果換成我是老闆，我也很難不生氣吧", value: 3 },
+                    { text: "D.好難過...我會不會明天就被炒魷魚了..嗚嗚，下次乾脆用托盤端飲料好了（？", value: 4 }
+                ]
+            },
+            {
+                question: "某天與好友聚會時，朋友們提議來點即興表演吧，你會？",
+                picture: "picture/qd.png",
+                options: [
+                    { text: "A.我大展身手的時候到了！馬上來", value: 1 },
+                    { text: "B.認真觀賞他人的表演，微笑拍手", value: 2 },
+                    { text: "C.關注表演內容，思考背後藏著什麼意義？", value: 3 },
+                    { text: "D.靈感被表演激發，默默在一旁記錄自己的感受", value: 4 }
+                ]
+            },
+            {
+                question: "獨自一人坐在海邊觀看夕陽西下，你的心裡正想著？",
+                picture: "picture/qe.png",
+                options: [
+                    { text: "A.生命短暫、及時行樂", value: 1 },
+                    { text: "B.內心平靜、與自然合一", value: 2 },
+                    { text: "C.激憤不已、胸懷大志", value: 3 },
+                    { text: "D.鬱鬱寡歡、黯然神傷", value: 4 }
+                ]
+            }
+        ];
 
         const results = [
-        {
-            script1:"我就愛玩，啊不然你想怎樣？",
-            script2:"與你最像的詩人是李白，個性自由奔放、無拘無束、豪邁不羈。",
-            script3:"李白：「人生得意需盡歡，莫使金樽空對月。」（《將進酒》",
-            pict:"pomer/1.jpg"
-        },
-        {
-            script1:"平常收到的長輩圖難道都是你傳的？",
-            script2:"與你最像的詩人是王維，個性成熟深沉、含蓄內斂。",
-            script3:"王維：「不知香積寺，數裏入雲峯。古木無人徑，深山何處鐘。泉聲咽危石，日色冷青松。薄暮空潭曲，安禪製毒龍。」（《過香積寺》）",
-            pict:"pomer/2.jpg"
-        },
-        {
-            script1:"努力關心社會的同時，也別忘了留點時間給自己！",
-            script2:"與你最像的詩人是杜甫，認真努力、關心社會發生的大小事，有「人飢己飢，人溺己溺」的精神。",
-            script3:"杜甫：「國破山河在，城春草木深。感時花濺淚，恨別鳥驚心。烽火連三月，家書抵萬金。白頭搔更短，渾欲不勝簪。」（《春望》）",
-            pict:"pomer/3.jpg"
-            
-        },
-        {
-            script1:"不要在獨自偷偷emo啦！",
-            script2:"與你最像的詩人是李賀，平時多愁善感、抑鬱寡歡。",
-            script3:"李賀：「況是青春日將暮，桃花亂落如紅雨。勸君終日酩酊醉，酒不到劉伶墳上土。」（《將進酒》",
-            pict:"pomer/4.jpg"
-            
-        }]
-            
-
-        
+            {
+                script1: "我就愛玩，啊不然你想怎樣？",
+                script2: "與你最像的詩人是李白，個性自由奔放、無拘無束、豪邁不羈。",
+                script3: "李白：「人生得意需盡歡，莫使金樽空對月。」（《將進酒》",
+                pict: "pomer/1.jpg"
+            },
+            {
+                script1: "平常收到的長輩圖難道都是你傳的？",
+                script2: "與你最像的詩人是王維，個性成熟深沉、含蓄內斂。",
+                script3: "王維：「不知香積寺，數裏入雲峯。古木無人徑，深山何處鐘。泉聲咽危石，日色冷青松。薄暮空潭曲，安禪製毒龍。」（《過香積寺》）",
+                pict: "pomer/2.jpg"
+            },
+            {
+                script1: "努力關心社會的同時，也別忘了留點時間給自己！",
+                script2: "與你最像的詩人是杜甫，認真努力、關心社會發生的大小事，有「人飢己飢，人溺己溺」的精神。",
+                script3: "杜甫：「國破山河在，城春草木深。感時花濺淚，恨別鳥驚心。烽火連三月，家書抵萬金。白頭搔更短，渾欲不勝簪。」（《春望》）",
+                pict: "pomer/3.jpg"
+            },
+            {
+                script1: "不要在獨自偷偷emo啦！",
+                script2: "與你最像的詩人是李賀，平時多愁善感、抑鬱寡歡。",
+                script3: "李賀：「況是青春日將暮，桃花亂落如紅雨。勸君終日酩酊醉，酒不到劉伶墳上土。」（《將進酒》",
+                pict: "pomer/4.jpg"
+            }
+        ];
 
         let currentQuestionIndex = 0;
         let counter = 0;
         const quizContainer = document.getElementById("quiz");
-        const counterDisplay = document.getElementById("counter");
 
         function loadQuestion() {
             const currentQuestion = questions[currentQuestionIndex];
@@ -281,92 +276,101 @@
         
             if (totalValue >= 5 && totalValue <= 7) {
                 quizContainer.innerHTML = `
-                    <div class="question">
+                    <div class="question_container">
                         <h2>${results[0].script1}</h2>
                         <img src="${results[0].pict}" alt="picture" class="pomer">
+                        <a href="learning.html" class="my_button2">在測試一次！</a>
                     </div>
                 `;
             } else if (totalValue === 8) {
                 let result = randomChoice("A 型", "B 型");
                 if(result == "A 型"){
                     quizContainer.innerHTML = `
-                    <div class="question">
+                    <div class="question_container">
                         <h2>${results[0].script1}</h2>
                         <img src="${results[0].pict}" alt="picture" class="pomer">
+                        <a href="learning.html" class="my_button2">在測試一次！</a>
                     </div>
                 `;
                 }else{
                     quizContainer.innerHTML = `
-                    <div class="question">
+                    <div class="question_container">
                         <h2>${results[1].script1}</h2>
                         <img src="${results[1].pict}" alt="picture" class="pomer">
+                        <a href="learning.html" class="my_button2">在測試一次！</a>
                     </div>
                 `;
                 }
             } else if (totalValue >= 9 && totalValue <= 11) {
                 quizContainer.innerHTML = `
-                    <div class="question">
+                    <div class="question_container">
                         <h2>${results[1].script1}</h2>
                         <img src="${results[1].pict}" alt="picture" class="pomer">
+                        <a href="learning.html" class="my_button2">在測試一次！</a>
                     </div>
                 `;
             } else if (totalValue === 12) {
                 let result = randomChoice("B 型", "C 型");
                 if(result == "B 型"){
                     quizContainer.innerHTML = `
-                    <div class="question">
+                    <div class="question_container">
                         <h2>${results[1].script1}</h2>
                         <img src="${results[1].pict}" alt="picture" class="pomer">
+                        <a href="learning.html" class="my_button2">在測試一次！</a>
                     </div>
                 `;
                 }else{
                     quizContainer.innerHTML = `
-                    <div class="question">
+                    <div class="question_container">
                         <h2>${results[2].script1}</h2>
                         <img src="${results[2].pict}" alt="picture" class="pomer">
+                        <a href="learning.html" class="my_button2">在測試一次！</a>
                     </div>
                 `;
                 }
             } else if (totalValue >= 13 && totalValue <= 15) {
                 quizContainer.innerHTML = `
-                    <div class="question">
+                    <div class="question_container">
                         <h2>${results[2].script1}</h2>
                         <img src="${results[2].pict}" alt="picture" class="pomer">
+                        <a href="learning.html" class="my_button2">在測試一次！</a>
                     </div>
                 `;
             } else if (totalValue === 16) {
                 let result = randomChoice("C 型", "D 型");
                 if(result == "C 型"){
                     quizContainer.innerHTML = `
-                    <div class="question">
+                    <div class="question_container">
                         <h2>${results[2].script1}</h2>
                         <img src="${results[2].pict}" alt="picture" class="pomer">
+                        <a href="learning.html" class="my_button2">在測試一次！</a>
                     </div>
                 `;
                 }else{
                     quizContainer.innerHTML = `
-                    <div class="question">
+                    <div class="question_container">
                         <h2>${results[3].script1}</h2>
                         <img src="${results[3].pict}" alt="picture" class="pomer">
+                        <a href="learning.html" class="my_button2">在測試一次！</a>
                     </div>
                 `;
                 }
             } else if (totalValue >= 17 && totalValue <= 20) {          
                 quizContainer.innerHTML = `
-                    <div class="question">
+                    <div class="question_container">
                         <h2>${results[3].script1}</h2>
                         <img src="${results[3].pict}" alt="picture" class="pomer">
+                        <a href="learning.html" class="my_button2">在測試一次！</a>
                     </div>
                 `;
             } else {
                 quizContainer.innerHTML = `
-                    <div class="question">
+                    <div class="question_container">
                         <h2>輸入錯誤或未符合範圍</h2>
                     </div>
                 `;
             }
         }
-        
 
         loadQuestion();
     </script>
