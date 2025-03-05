@@ -105,6 +105,7 @@
             align-items: center; /* 居中對齊 */
             margin-top: 100px;
             width: 100%;
+            margin-bottom:50px;
         }
         .question-pic{
             width:50%;
@@ -136,21 +137,26 @@
             list-style-type: none;
             padding: 0;
         }
+        .pomer{
+            width: 50%;
+            border-radius: 30px;
+            margin-top: 10px
+        }
     </style>
 </head>
 <body>
     <header>
         <nav>
-            <a href="mainPage.html">首頁</a>
+            <a href="index.html">首頁</a>
             <a href="#">關於我們</a>
-            <a href="#">報名網址</a>
+            <a href="https://reurl.cc/4602Ej">報名簡章</a>
+            <a herf="https://forms.gle/wWdmbQpML42BCBxd6">報名表單</a>
         </nav>
     </header>
     <main>
        
         <div class="button_container">
             <div id="quiz"></div>
-            <div id="counter">分數: 0</div>
         </div>
     </main>
     <footer>
@@ -214,22 +220,28 @@
         {
             script1:"我就愛玩，啊不然你想怎樣？",
             script2:"與你最像的詩人是李白，個性自由奔放、無拘無束、豪邁不羈。",
-            script3:"李白：「人生得意需盡歡，莫使金樽空對月。」（《將進酒》"
+            script3:"李白：「人生得意需盡歡，莫使金樽空對月。」（《將進酒》",
+            pict:"pomer/1.jpg"
         },
         {
             script1:"平常收到的長輩圖難道都是你傳的？",
             script2:"與你最像的詩人是王維，個性成熟深沉、含蓄內斂。",
-            script3:"王維：「不知香積寺，數裏入雲峯。古木無人徑，深山何處鐘。泉聲咽危石，日色冷青松。薄暮空潭曲，安禪製毒龍。」（《過香積寺》）"
+            script3:"王維：「不知香積寺，數裏入雲峯。古木無人徑，深山何處鐘。泉聲咽危石，日色冷青松。薄暮空潭曲，安禪製毒龍。」（《過香積寺》）",
+            pict:"pomer/2.jpg"
         },
         {
             script1:"努力關心社會的同時，也別忘了留點時間給自己！",
             script2:"與你最像的詩人是杜甫，認真努力、關心社會發生的大小事，有「人飢己飢，人溺己溺」的精神。",
-            script3:"杜甫：「國破山河在，城春草木深。感時花濺淚，恨別鳥驚心。烽火連三月，家書抵萬金。白頭搔更短，渾欲不勝簪。」（《春望》）"
+            script3:"杜甫：「國破山河在，城春草木深。感時花濺淚，恨別鳥驚心。烽火連三月，家書抵萬金。白頭搔更短，渾欲不勝簪。」（《春望》）",
+            pict:"pomer/3.jpg"
+            
         },
         {
             script1:"不要在獨自偷偷emo啦！",
             script2:"與你最像的詩人是李賀，平時多愁善感、抑鬱寡歡。",
-            script3:"李賀：「況是青春日將暮，桃花亂落如紅雨。勸君終日酩酊醉，酒不到劉伶墳上土。」（《將進酒》"
+            script3:"李賀：「況是青春日將暮，桃花亂落如紅雨。勸君終日酩酊醉，酒不到劉伶墳上土。」（《將進酒》",
+            pict:"pomer/4.jpg"
+            
         }]
             
 
@@ -254,7 +266,6 @@
         function nextQuestion(value) {
             counter += value;
             currentQuestionIndex++;
-            counterDisplay.innerText = `分數: ${counter}`;
             
             if (currentQuestionIndex < questions.length) {
                 loadQuestion();
@@ -272,8 +283,7 @@
                 quizContainer.innerHTML = `
                     <div class="question">
                         <h2>${results[0].script1}</h2>
-                        <h2>${results[0].script2}</h2>
-                        <h2>${results[0].script3}</h2>
+                        <img src="${results[0].pict}" alt="picture" class="pomer">
                     </div>
                 `;
             } else if (totalValue === 8) {
@@ -282,16 +292,14 @@
                     quizContainer.innerHTML = `
                     <div class="question">
                         <h2>${results[0].script1}</h2>
-                        <h2>${results[0].script2}</h2>
-                        <h2>${results[0].script3}</h2>
+                        <img src="${results[0].pict}" alt="picture" class="pomer">
                     </div>
                 `;
                 }else{
                     quizContainer.innerHTML = `
                     <div class="question">
                         <h2>${results[1].script1}</h2>
-                        <h2>${results[1].script2}</h2>
-                        <h2>${results[1].script3}</h2>
+                        <img src="${results[1].pict}" alt="picture" class="pomer">
                     </div>
                 `;
                 }
@@ -299,8 +307,7 @@
                 quizContainer.innerHTML = `
                     <div class="question">
                         <h2>${results[1].script1}</h2>
-                        <h2>${results[1].script2}</h2>
-                        <h2>${results[1].script3}</h2>
+                        <img src="${results[1].pict}" alt="picture" class="pomer">
                     </div>
                 `;
             } else if (totalValue === 12) {
@@ -309,16 +316,14 @@
                     quizContainer.innerHTML = `
                     <div class="question">
                         <h2>${results[1].script1}</h2>
-                        <h2>${results[1].script2}</h2>
-                        <h2>${results[1].script3}</h2>
+                        <img src="${results[1].pict}" alt="picture" class="pomer">
                     </div>
                 `;
                 }else{
                     quizContainer.innerHTML = `
                     <div class="question">
                         <h2>${results[2].script1}</h2>
-                        <h2>${results[2].script2}</h2>
-                        <h2>${results[2].script3}</h2>
+                        <img src="${results[2].pict}" alt="picture" class="pomer">
                     </div>
                 `;
                 }
@@ -326,8 +331,7 @@
                 quizContainer.innerHTML = `
                     <div class="question">
                         <h2>${results[2].script1}</h2>
-                        <h2>${results[2].script2}</h2>
-                        <h2>${results[2].script3}</h2>
+                        <img src="${results[2].pict}" alt="picture" class="pomer">
                     </div>
                 `;
             } else if (totalValue === 16) {
@@ -336,16 +340,14 @@
                     quizContainer.innerHTML = `
                     <div class="question">
                         <h2>${results[2].script1}</h2>
-                        <h2>${results[2].script2}</h2>
-                        <h2>${results[2].script3}</h2>
+                        <img src="${results[2].pict}" alt="picture" class="pomer">
                     </div>
                 `;
                 }else{
                     quizContainer.innerHTML = `
                     <div class="question">
                         <h2>${results[3].script1}</h2>
-                        <h2>${results[3].script2}</h2>
-                        <h2>${results[3].script3}</h2>
+                        <img src="${results[3].pict}" alt="picture" class="pomer">
                     </div>
                 `;
                 }
@@ -353,8 +355,7 @@
                 quizContainer.innerHTML = `
                     <div class="question">
                         <h2>${results[3].script1}</h2>
-                        <h2>${results[3].script2}</h2>
-                        <h2>${results[3].script3}</h2>
+                        <img src="${results[3].pict}" alt="picture" class="pomer">
                     </div>
                 `;
             } else {
