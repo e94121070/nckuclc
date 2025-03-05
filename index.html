@@ -7,15 +7,14 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #8dcacd;
+            background-color: #f4f4f9;
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             height: 100vh;
-            background-image: url("background-picture.jpeg");
-            
+            background-image: url("picture/background-picture.jpeg");
         }
         header {
             width: 100%;
@@ -48,54 +47,48 @@
             width: 100%;
             object-fit: cover;
             margin-top: 60px;
-   
         }
-        .test_cover{
+        .test_cover {
             width: 50%;
             border-radius: 30px;
-            margin-top: 10px;
-
-
+            margin-top: 30px;
         }
         .camp-info {
-
             padding: 20px;
             border-radius: 10px;
             max-width: 600px;
             text-align: center;
             margin-top: 10px; /* 增加頂部間距以避免被固定的header遮擋 */
         }
-        .signup-info{
+        .signup-info {
             padding: 20px;
             border-radius: 10px;
             max-width: 600px;
-            width:90%;
-            text-align: center;
+            width: 90%;
+            text-align: center; /* 修改為居中對齊 */
             margin-top: 10px; /* 增加頂部間距以避免被固定的header遮擋 */
             background-color: white;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: center;
-        }
-        .info-container{
-            display: flex;
-            flex-direction: column;
-            align-items: left;
-        }
-        .info-container{
-            display: flex;
             flex-direction: column;
             align-items: center;
+            margin-bottom:30px;
+        }
+        .info-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* 修改為居中對齊 */
+            padding: 20px;
         }
         h2 {
             color: #333;
             font: bold;
             font-size: 40px;
-            
         }
         h3 {
             color: #555;
+        }
+        h4 {
+            color: black;
+            font-size: 20px;
         }
         p {
             color: #666;
@@ -137,21 +130,36 @@
         .my_button:hover {
             background-color: gray;
         }
-        .link{
+        .link {
             color: #555;
-            font:bold;
+            font: bold;
+        }
+        .social-media-container {
+            display: flex;
+            flex-direction: row;
+        }
+        .social-media-container img {
+            width: 100px;
+            height: 100px;
+            margin: 50px;
+        }
+        .social-media-container img:hover {
+            transform: scale(1.1);
+        }
+        .social-media-info{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
     </style>
 </head>
 <body>
     <header>
         <nav>
-            <a href="#" style="font-size: 20px;">首頁</a>
-            <a href="#" style="font-size: 20px;">關於我們</a>
-            <a href="https://reurl.cc /4602Ej" style="font-size: 20px;">報名簡章</a>
-            <a href="https://forms.gle/wWdmbQpML42BCBxd6" style="font-size: 20px;">報名表單</a>
-
-
+            <a href="#" style="font-size: 18px;">首頁</a>
+            <a href="https://reurl.cc/4602Ej" style="font-size: 18px;">報名簡章</a>
+            <a href="https://forms.gle/wWdmbQpML42BCBxd6" style="font-size: 18px;">報名表單</a>
+            
         </nav>
     </header>
 
@@ -167,10 +175,48 @@
             筆鋒所至，皆是成長的痕跡。
         </p>
         <p>這個夏天，我們在成功大學，敘寫人生。</p>
-        <h3 style="font-size: 30px;">報名時間｜2025/2/24-2025/4/18</h3>
-
+        <h3 style="font-size: 25px;">報名時間</h3>
+        <h3 style="font-size: 25px;">2025/2/24-2025/4/18</h3>
     </div>
-    <img src = "picture/test_cover.png" alt = "picture" class = "test_cover">
+
+    <div class="signup-info">
+        <h3 style="font-size: 25px;">報名辦法及資訊</h3>
+        <div class="info-container">
+            <h4>報名方式</h4>
+            <p>下載報名表和家長同意書</p>
+            <p>填寫完畢並轉成pdf檔後上傳到成大文藝營報名表單</p>
+            <h4>報名費用</h4>
+            <p>單人：5500元/人</p>
+            <p>兩人團報：5200元/人</p>
+            <p>三人含以上團報：5000元/人</p>
+            <p>弱勢家庭與低收需附證明）：4500元/人</p>
+            <h4>活動資訊</h4>
+            <p>招生對象：全國國三應屆畢業生與高中職生</p>
+            <p>營期時間：2025/7/3-2025/7/6</p>
+            <p>活動地點：國立成功大學</p>
+            <p>住宿地點：國立成功大學宿舍</p>
+            <p>繳費方式：日後將於粉專公告相關資訊</p>
+        </div>
+    </div>
+    <h2>歡迎追蹤我們的粉專！</h2>
+    <div class="social-media-container">
+        <div class="social-media-info">
+            <a href="https://www.facebook.com/nckulcfamily" class="link">
+                <img src="picture/Facebook_icon.png" alt="facebook">
+            </a>
+        </div>
+        <div class="social-media-info">
+            <a href="https://www.instagram.com/nckuclc23?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="link">
+                <img src="picture/Instagram_icon.png" alt="instagram">
+            </a>
+        </div>
+        <div class="social-media-info">
+            <a href="https://www.threads.net/@nckuclc23" class="link">
+                <img src="picture/Threads_icon.png" alt="threads">
+            </a>
+        </div>
+    </div>
+    <img src="picture/test_cover.png" alt="picture" class="test_cover">
     <a href="learning.html" class="my_button">讓我們開始吧</a>
     <footer>
         <p>Contact us at: wenyiyingncku@gmail.com</p>
