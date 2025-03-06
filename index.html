@@ -14,13 +14,12 @@
             flex-direction: column;
             align-items: center;
             height: 100vh;
-            background-image: url("picture/background-picture.jpeg");
             background-size: cover;
             background-position: center;
         }
         header {
             width: 100%;
-            background-color: #333;
+            background-color:hsl(191, 100%, 77%);
             color: white;
             padding: 10px 0;
             display: flex;
@@ -36,14 +35,14 @@
             gap: 20px;
         }
         header nav a {
-            color: white;
+            color: black;
             text-decoration: none;
             padding: 10px 20px;
             border-radius: 5px;
             transition: background-color 0.3s;
         }
         header nav a:hover {
-            background-color: #555;
+            background-color: white;
         }
         .cover {
             width: 100%;
@@ -56,13 +55,21 @@
             border-radius: 30px;
             margin-top: 30px;
         }
-        .camp-info, .signup-info {
+        .camp-info {
             padding: 20px;
             border-radius: 10px;
             max-width: 90%;
             text-align: center;
-            background-color: white;
             margin-top: 10px;
+        }
+        
+        .signup-info {
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 90%;
+            text-align: center;
+            margin-top: 10px;
+            background-color:white;
         }
         .info-container {
             display: flex;
