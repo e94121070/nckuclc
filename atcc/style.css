@@ -99,38 +99,3 @@ body {
     font-weight: 400;
 }
 
-/* 媒體查詢：針對平板裝置 */
-@media (max-width: 768px) {
-    .title-div, .name-div, .college-div, .gmail-div, .mobile-div {
-        padding: 15px;
-    }
-
-    .input-div input {
-        font-size: 14px;
-    }
-
-    .btn {
-        font-size: 13px;
-        padding: 8px;
-    }
-}
-
-/* 媒體查詢：針對手機裝置 */
-@media (max-width: 480px) {
-    .title-div, .name-div, .college-div, .gmail-div, .mobile-div {
-        padding: 10px;
-    }
-
-    .name {
-        font-size: 14px;
-    }
-
-    .input-div input {
-        font-size: 13px;
-    }
-
-    .btn {
-        font-size: 12px;
-        padding: 6px;
-    }
-}
