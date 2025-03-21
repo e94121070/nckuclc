@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>掃我</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            background-color: #05ede1;
+        }
+
+        /* 固定在中間的圖片 */
+        .center-img {
+            position: absolute;
+            width: 30%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* 會移動的圖片 */
+        .moving-img {
+            position: absolute;
+            width: 100px; /* 移動圖片大小 */
+            height: 100px;
+            animation: rotate 2s linear infinite; /* 添加旋轉動畫 */
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>掃我</div>
+    <img src="picture/qrcode.png" class="center-img" id="centerImage">
+    <img src="picture/duck.png" class="moving-img" id="movingImage1">
+    <img src="picture/duck.png" class="moving-img" id="movingImage2">
+    <img src="picture/duck.png" class="moving-img" id="movingImage3">
+    <img src="picture/duck.png" class="moving-img" id="movingImage4">
+    <img src="picture/duck.png" class="moving-img" id="movingImage5">
+    <img src="picture/duck.png" class="moving-img" id="movingImage6">
+    <img src="picture/duck.png" class="moving-img" id="movingImage7">
+    <img src="picture/duck.png" class="moving-img" id="movingImage8">
+    <img src="picture/duck.png" class="moving-img" id="movingImage9">
+    <img src="picture/duck.png" class="moving-img" id="movingImage10">
+    <img src="picture/duck.png" class="moving-img" id="movingImage11">
+    <img src="picture/duck.png" class="moving-img" id="movingImage12">
+    <img src="picture/duck.png" class="moving-img" id="movingImage13">
+    <img src="picture/duck.png" class="moving-img" id="movingImage14">
+    <img src="picture/duck.png" class="moving-img" id="movingImage15">
+    <img src="picture/duck.png" class="moving-img" id="movingImage16">
+    <img src="picture/duck.png" class="moving-img" id="movingImage17">
+    <img src="picture/duck.png" class="moving-img" id="movingImage18">
+    <img src="picture/duck.png" class="moving-img" id="movingImage19">
+    <img src="picture/duck.png" class="moving-img" id="movingImage20">
+    <img src="picture/duck.png" class="moving-img" id="movingImage21">
+    <img src="picture/duck.png" class="moving-img" id="movingImage22">
+
+    
+    <script>
+        // 取得圖片元素
+        const movingImages = [
+            document.getElementById("movingImage1"),
+            document.getElementById("movingImage2"),
+            document.getElementById("movingImage3"),
+            document.getElementById("movingImage4"),
+            document.getElementById("movingImage5"),
+            document.getElementById("movingImage6"),
+            document.getElementById("movingImage7"),
+            document.getElementById("movingImage8"),
+            document.getElementById("movingImage9"),
+            document.getElementById("movingImage10"),
+            document.getElementById("movingImage11"),
+            document.getElementById("movingImage12"),
+            document.getElementById("movingImage13"),
+            document.getElementById("movingImage14"),
+            document.getElementById("movingImage15"),
+            document.getElementById("movingImage16"),
+            document.getElementById("movingImage17"),
+            document.getElementById("movingImage18"),
+            document.getElementById("movingImage19"),
+            document.getElementById("movingImage20"),
+            document.getElementById("movingImage21"),
+            document.getElementById("movingImage22")
+            
+        ];
+        const centerImage = document.getElementById("centerImage");
+
+        // 設定移動圖片的初始位置和速度
+        const positions = [
+            { x: 100, y: 600, dx: 2, dy: 2 },
+            { x: 1000, y: 100, dx: -2, dy: 2 },
+            { x: 100, y: 700, dx: 2, dy: -2 },
+            { x: 1000, y: 700, dx: -2, dy: -2 },
+            { x: 1000, y: 300, dx: 2, dy: 2 },
+            { x: 1000, y: 200, dx: -2, dy: 2 },
+            { x: 1000, y: 400, dx: 2, dy: -2 },
+            { x: 1000, y: 500, dx: -2, dy: -2 },
+            { x: 1000, y: 600, dx: 2, dy: 2 },
+            { x: 100, y: 200, dx: -2, dy: 2 },
+            { x: 100, y: 300, dx: 2, dy: -2 },
+            { x: 100, y: 400, dx: -2, dy: -2 },
+            { x: 100, y: 500, dx: 2, dy: 2 },
+            { x: 100, y: 100, dx: -2, dy: 2 },
+            { x: 200, y: 700, dx: 2, dy: -2 },
+            { x: 1900, y: 600, dx: -2, dy: -2 },
+            { x: 2900, y: 500, dx: 2, dy: 2 },
+            { x: 1900, y: 400, dx: -2, dy: 2 },
+            { x: 2900, y: 300, dx: 2, dy: -2 },
+            { x: 1900, y: 200, dx: -2, dy: -2 },
+            { x: 2900, y: 100, dx: 2, dy: 2 },
+            { x: 1900, y: 800, dx: -2, dy: 2 }
+        ];
+
+        function updatePosition() {
+            let screenWidth = window.innerWidth;
+            let screenHeight = window.innerHeight;
+            let centerRect = centerImage.getBoundingClientRect();
+
+            movingImages.forEach((img, index) => {
+                let pos = positions[index];
+                let imgWidth = img.clientWidth;
+                let imgHeight = img.clientHeight;
+
+                let movingRect = {
+                    left: pos.x,
+                    right: pos.x + imgWidth,
+                    top: pos.y,
+                    bottom: pos.y + imgHeight
+                };
+
+                // 碰到邊界反彈
+                if (pos.x <= 0 || pos.x + imgWidth >= screenWidth) {
+                    pos.dx = -pos.dx;
+                }
+                if (pos.y <= 0 || pos.y + imgHeight >= screenHeight) {
+                    pos.dy = -pos.dy;
+                }
+
+                // 碰到中心圖片的碰撞邏輯
+                if (
+                    movingRect.right > centerRect.left &&
+                    movingRect.left < centerRect.right &&
+                    movingRect.bottom > centerRect.top &&
+                    movingRect.top < centerRect.bottom
+                ) {
+                    // 確定碰撞的方向
+                    let overlapLeft = movingRect.right - centerRect.left;
+                    let overlapRight = centerRect.right - movingRect.left;
+                    let overlapTop = movingRect.bottom - centerRect.top;
+                    let overlapBottom = centerRect.bottom - movingRect.top;
+
+                    let minOverlap = Math.min(overlapLeft, overlapRight, overlapTop, overlapBottom);
+
+                    // 如果最小重疊量發生在左右方向 → 水平反彈
+                    if (minOverlap === overlapLeft || minOverlap === overlapRight) {
+                        pos.dx = -pos.dx;
+                    }
+                    // 如果最小重疊量發生在上下方向 → 垂直反彈
+                    if (minOverlap === overlapTop || minOverlap === overlapBottom) {
+                        pos.dy = -pos.dy;
+                    }
+
+                    // 碰撞後稍微偏移，避免卡住
+                    pos.x += pos.dx;
+                    pos.y += pos.dy;
+                }
+
+                // 更新位置
+                pos.x += pos.dx;
+                pos.y += pos.dy;
+                img.style.left = pos.x + "px";
+                img.style.top = pos.y + "px";
+            });
+
+            // 檢查圖片之間的碰撞
+            for (let i = 0; i < movingImages.length; i++) {
+                for (let j = i + 1; j < movingImages.length; j++) {
+                    let img1 = movingImages[i];
+                    let img2 = movingImages[j];
+                    let pos1 = positions[i];
+                    let pos2 = positions[j];
+
+                    let rect1 = {
+                        left: pos1.x,
+                        right: pos1.x + img1.clientWidth,
+                        top: pos1.y,
+                        bottom: pos1.y + img1.clientHeight
+                    };
+                    let rect2 = {
+                        left: pos2.x,
+                        right: pos2.x + img2.clientWidth,
+                        top: pos2.y,
+                        bottom: pos2.y + img2.clientHeight
+                    };
+
+                    if (
+                        rect1.right > rect2.left &&
+                        rect1.left < rect2.right &&
+                        rect1.bottom > rect2.top &&
+                        rect1.top < rect2.bottom
+                    ) {
+                        // 確定碰撞的方向
+                        let overlapLeft = rect1.right - rect2.left;
+                        let overlapRight = rect2.right - rect1.left;
+                        let overlapTop = rect1.bottom - rect2.top;
+                        let overlapBottom = rect2.bottom - rect1.top;
+
+                        let minOverlap = Math.min(overlapLeft, overlapRight, overlapTop, overlapBottom);
+
+                        // 如果最小重疊量發生在左右方向 → 水平反彈
+                        if (minOverlap === overlapLeft || minOverlap === overlapRight) {
+                            pos1.dx = -pos1.dx;
+                            pos2.dx = -pos2.dx;
+                        }
+                        // 如果最小重疊量發生在上下方向 → 垂直反彈
+                        if (minOverlap === overlapTop || minOverlap === overlapBottom) {
+                            pos1.dy = -pos1.dy;
+                            pos2.dy = -pos2.dy;
+                        }
+
+                        // 碰撞後稍微偏移，避免卡住
+                        pos1.x += pos1.dx;
+                        pos1.y += pos1.dy;
+                        pos2.x += pos2.dx;
+                        pos2.y += pos2.dy;
+                    }
+                }
+            }
+
+            requestAnimationFrame(updatePosition);
+        }
+
+        // 設定初始位置
+        movingImages.forEach((img, index) => {
+            let pos = positions[index];
+            img.style.left = pos.x + "px";
+            img.style.top = pos.y + "px";
+        });
+
+        // 開始移動
+        updatePosition();
+    </script>
+
+</body>
+</html>

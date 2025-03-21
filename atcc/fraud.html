@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <title>Google Forms</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault(); // 防止表單的預設提交行為
+            const mobileInput = document.querySelector('.mobile-div input').value.trim();
+            if (mobileInput) {
+                // 如果填寫了電話號碼，跳轉到 result_bad.html
+                window.location.href = 'result_bad.html';
+            } else {
+                // 如果未填寫電話號碼，跳轉到 result_good.html
+                window.location.href = 'result_good.html';
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div class="form">
+        <div class="title-div">
+            <h1>問卷調查</h1>
+            <p>我們是一群在研究民眾對於詐騙敏感度的大學生，我們發現不同詐騙技巧在不同年齡層的效果有很大程度的差異，此實驗為匿名測驗，將採用電話號碼作為測驗編號，麻煩大家用最認真的態度完成作答。</p>
+        </div>
+
+        <div class="name-div">
+            <div class="name">請輸入姓名<span class="required">*</span></div>
+            <div class="input-div"><input type="input" name="answer" placeholder="Your answer"></div>
+        </div>
+
+        <div class="gmail-div">
+            <div class="name">請輸入姓別<span class="required">*</span></div>
+            <div class="input-div"><input type="input" name="answer" placeholder="Your answer"></div>
+        </div>
+
+        <div class="mobile-div">
+            <div class="name">請輸入電話號碼</div>
+            <div class="input-div"><input type="input" name="answer" placeholder="Your answer"></div>
+        </div>
+
+        <div>
+            <button class="btn" type="submit" name="Submit" onclick="handleSubmit(event)">提交</button>
+        </div>
+
+        <div class="last-div">
+            <p class="never">請勿利用Google表單送出密碼</p>
+            <h2>Google 表單</h2>
+        </div>
+    </div>
+
+</body>
+</html>
