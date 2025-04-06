@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google 表單</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .container { max-width: 600px; margin: 20px auto; }
+        .question { margin-bottom: 15px; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="form container">
+        <div class="title-div" id = "title-container">
+            <h2 class="hh" style="font-size: 30px;">詐騙度測試</h2>
+        </div>
+        
+        <div id="form-container"></div>
+
+        <button id="prevBtn" onclick="prevPage()" class="btn">上一頁</button>
+        <button id="nextBtn" onclick="nextPage()" class="btn">下一頁</button>
+        <button id="submitBtn" onclick="submitForm()" class="btn">提交</button>
+    </div>
+
+    <script>
+        const formData = {
+            pages: [
+                ["page_1_question_1", "page_1_question_2", "page_1_question_3"],
+                ["page_2_question_1", "page_2_question_2"]
+            ],
+            questions: {
+                "page_1_question_1": {
+                    "question": "您的性別？",
+                    "options": ["男", "女", "多元性別", "不願透漏"],
+                    "type": "radio"
+                },
+                "page_1_question_2": {
+                    "question": "年齡",
+                    "options": ["20歲以下", "20-30歲", "30-40歲", "40-50歲", "50-60歲", "60歲以上"],
+                    "type": "radio"
+                },
+                "page_1_question_3": {
+                    "question": "電話(抽獎後以簡訊通知)",
+                    "type": "text"
+                },
+                "page_2_question_1": {
+                    "question": "我們國內一家電信業者有在做防詐，名稱是守護網，這個功能可以幫助用戶辨識詐騙電話，下圖為其名為「月度回顧」的功能，每月給用戶提供該月的防詐紀錄，我們在原有功能的基礎上給用戶們提供了更多的訊息分析",
+                    "pict": "monthly-review.jpg ",
+                    "type": "picture"
+                },
+                "page_2_question_2": {
+                    "question": "請問這是哪家電信公司提出的功能",
+                    "options": ["遠傳", "中華電信", "台灣之星", "台灣大哥大"],
+                    "type": "radio"
+                }
+            }
+        };
+    
+        let currentPage = 0;
+        let answers = {};
+    
+        function renderPage() {
+            const container = document.getElementById("form-container");
+            container.innerHTML = "";
+    
+            formData.pages[currentPage].forEach(qType => {
+                const questionData = formData.questions[qType];
+                const div = document.createElement("div");
+                div.className = "name-div";
+                div.innerHTML = `<p class='namoe'>${questionData.question} <span class='required'>*</span></p>`;
+    
+                if (questionData.type === "radio" || questionData.type === "checkbox") {
+                    questionData.options.forEach(option => {
+                        div.innerHTML += `
+                            <label>
+                                <input type="${questionData.type}" name="${qType}" value="${option}"
+                                    ${answers[qType]?.includes(option) ? "checked" : ""}>
+                                ${option}
+                            </label><br>
+                        `;
+                    });
+                } else if (questionData.type === "select") {
+                    let optionsHtml = questionData.options.map(option =>
+                        `<option value="${option}" ${answers[qType] === option ? "selected" : ""}>${option}</option>`
+                    ).join("");
+                    div.innerHTML += `<select name="${qType}">${optionsHtml}</select>`;
+                } else if (questionData.type === "picture") {
+                    div.innerHTML += `<img src="${questionData.pict}" alt="圖片" class = "pict">`;
+                } else {
+                    div.innerHTML += `<div class="input-div"><input type="text" name="${qType}" value="${answers[qType] || ""}"></div>`;
+                }
+    
+                container.appendChild(div);
+            });
+    
+            document.getElementById("prevBtn").classList.toggle("hidden", currentPage === 0);
+            document.getElementById("nextBtn").classList.toggle("hidden", currentPage === formData.pages.length - 1);
+            document.getElementById("submitBtn").classList.toggle("hidden", currentPage !== formData.pages.length - 1);
+        }
+    
+        function saveAnswers() {
+            document.querySelectorAll("input, select").forEach(input => {
+                if (input.type === "radio" && input.checked) {
+                    answers[input.name] = input.value;
+                } else if (input.type === "checkbox") {
+                    if (!answers[input.name]) answers[input.name] = [];
+                    if (input.checked && !answers[input.name].includes(input.value)) {
+                        answers[input.name].push(input.value);
+                    } else if (!input.checked) {
+                        answers[input.name] = answers[input.name].filter(val => val !== input.value);
+                    }
+                } else if (input.type === "text" || input.tagName === "SELECT") {
+                    answers[input.name] = input.value;
+                }
+            });
+        }
+    
+        function nextPage() {
+            saveAnswers();
+            const phone = answers["page_1_question_3"]?.trim();
+            if (currentPage === 0 && phone) {
+                window.location.href = "result1.html";
+                return;
+            }
+            if (currentPage < formData.pages.length - 1) {
+                currentPage++;
+                renderPage();
+            }
+        }
+    
+        function prevPage() {
+            saveAnswers();
+            if (currentPage > 0) {
+                currentPage--;
+                renderPage();
+            }
+        }
+    
+        function submitForm() {
+            saveAnswers();
+            const selectedCarrier = answers["page_2_question_2"];
+            if (selectedCarrier !== "遠傳") {
+                window.location.href = "result2.html";
+            } else {
+                window.location.href = "result3.html";
+            }
+        }
+    
+        renderPage();
+    </script>
+    
+</body>
+</html>
